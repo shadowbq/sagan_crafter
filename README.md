@@ -1,28 +1,31 @@
 # SaganCrafter
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sagan_crafter`. To experiment with that code, run `bin/console` for an interactive prompt.
+Sagan Crafter is designed to help build SAGAN rules from simple backends.
 
-TODO: Delete this and the text above, and describe your gem
+```
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - tscl.com.bd"; content:"tscl.com.bd"; normalize:tightstack; sid:1635309608; program:tightstack; rev:2;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - uclmfocus.com"; content:"uclmfocus.com"; normalize:tightstack; sid:1042387290; program:tightstack; rev:2;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - upstreams.info"; content:"upstreams.info"; normalize:tightstack; sid:1757176352; program:tightstack; rev:1;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - vibaavaacademy.com"; content:"vibaavaacademy.com"; normalize:tightstack; sid:1270011767; program:tightstack; rev:1;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - www.cpteducation.it"; content:"www.cpteducation.it"; normalize:tightstack; sid:1499466929; program:tightstack; rev:1;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - www.itidea.it"; content:"www.itidea.it"; normalize:tightstack; sid:1352812295; program:tightstack; rev:2;)
+```
+Note: 
+
+* https://github.com/beave/sagan
+* https://quadrantsec.com/sagan_log_analysis_engine/
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'sagan_crafter'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install it as:
 
     $ gem install sagan_crafter
 
 ## Usage
 
-TODO: Write usage instructions here
+```    
+$ sagan_crafter --help
+```
 
 ## Development
 
@@ -32,10 +35,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sagan_crafter. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/shadowbq/sagan_crafter. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
