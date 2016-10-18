@@ -35,7 +35,7 @@ module SaganCrafter
 
       def print
         @db.execute('select DISTINCT count(*) as cnt, max(import_time) as max_import_time, name, feed_name, feed_provider from fqdns group by name') do |row|
-          puts SaganCrafter::Generators::PDNS.new(row["name"], row["feed_provider"], row["feed_name"], row["cnt"], row["max_import_time"]).to_s
+          puts SaganCrafter::Generators::FQDNlogger.new(row["name"], row["feed_provider"], row["feed_name"], row["cnt"], row["max_import_time"]).to_s
         end
       end
 

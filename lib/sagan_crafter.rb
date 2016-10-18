@@ -13,6 +13,6 @@ module SaganCrafter
   require "sagan_crafter/settings"
   require "sagan_crafter/version"
   require "sagan_crafter/backends/sqlite"
-  require "sagan_crafter/generators/pdns"
-  require "sagan_crafter/generators/cxtracker"
+  require "sagan_crafter/generators/fqdnlogger"
+  require "sagan_crafter/generators/iplogger"
 end

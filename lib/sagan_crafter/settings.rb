@@ -44,6 +44,10 @@ module SaganCrafter
     def self.reset!
       self.config do
         verbose false
+        fqdnlogger  "PASSIVEDNS"
+        iplogger    "CXTRACKER"
+        normalizer  "tightstack"
+        program     "tightstack"
       end
     end
 
@@ -68,6 +72,10 @@ module SaganCrafter
 
   Settings.config do
     parameter :verbose
+    parameter :fqdnlogger
+    parameter :iplogger
+    parameter :normalizer
+    parameter :program
   end
 
   Settings.reset!
