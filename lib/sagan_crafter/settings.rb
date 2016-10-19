@@ -48,6 +48,7 @@ module SaganCrafter
         iplogger    "CXTRACKER"
         normalizer  "tightstack"
         program     "tightstack"
+        sql_table_name "fqdns"
       end
     end
 
@@ -76,6 +77,7 @@ module SaganCrafter
     parameter :iplogger
     parameter :normalizer
     parameter :program
+    parameter :sql_table_name
   end
 
   Settings.reset!

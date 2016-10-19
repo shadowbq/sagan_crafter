@@ -12,7 +12,8 @@ module SaganCrafter
   require "sagan_crafter/main"
   require "sagan_crafter/settings"
   require "sagan_crafter/version"
+  require "sagan_crafter/ruleset"
   require "sagan_crafter/backends/sqlite"
-  require "sagan_crafter/generators/fqdnlogger"
-  require "sagan_crafter/generators/iplogger"
+  require "sagan_crafter/factory/fqdnlogger"
+  require "sagan_crafter/factory/iplogger"
 end

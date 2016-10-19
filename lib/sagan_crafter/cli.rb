@@ -18,18 +18,18 @@ module SaganCrafter
         options[:sqlite] = false
         options[:sqlite_location] = '/tmp/threat.db'
 
-        options[:raw] = SaganCrafter::Defaults::Raw
-
         opt_parser = OptionParser.new do |opt|
           opt.banner = "Usage: sagan-crafter"
           opt.separator ""
 
           opt.on("-c", "--cxtracker", "Create CXTracker rules") do
             options[:cxtracker] = true
+            SaganCrafter::Settings.sql_table_name = "ipv4"
           end
 
           opt.on("-p", "--passivedns", "Create Passivedns rules") do
             options[:passivedns] = true
+            SaganCrafter::Settings.sql_table_name = "fqdns"
           end
 
           opt.separator ""
@@ -79,9 +79,7 @@ module SaganCrafter
         end
 
         puts  Settings.verbose
-        printer = SaganCrafter::Backends::SQLite.new(options[:sqlite_location])
-        printer.validate!
-        printer.print
+        FQDNRuleset.new('sqlite3')
         #session = SaganCrafter::Gonna.new
         #session.login(username, password)
 
