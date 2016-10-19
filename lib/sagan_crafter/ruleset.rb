@@ -1,34 +1,37 @@
 module SaganCrafter
   class Ruleset
+    attr_reader :rules
+
     def initialize(rule_sources)
       @rules_builders = []
-      rule_sources.each do |rs|
-        rule = new_rule_source(rs)
-        puts "here"
-        @rules << rule
+      @rules = []
+      rule_sources.each do |source|
+        @rules << new_rule_source(source)
       end
+      @rules
     end
 
-    def build
-      @rules_builders.each {|builder| builder.build}
+    def to_s
+      @rules.to_s
     end
+
   end
 
   class FQDNRuleset < Ruleset
-    def new_rule_source(rs)
-      puts rs
-      printer = SaganCrafter::Backends::SQLite.new(options[:sqlite_location], SaganCrafter::Generators::FQDNlogger.new )
+    def new_rule_source(source)
+      puts "#[sagan-crafter] #{self.class} - #{source}" if SaganCrafter::Settings.verbose
+      printer = SaganCrafter::Backends::SQLite.new(SaganCrafter::Factory::FQDNlogger.new )
       printer.validate!
-      printer.print
+      return printer.build
     end
   end
 
   class IPRuleset < Ruleset
-    def new_rule_source(rs)
-      puts rs
-      printer = SaganCrafter::Backends::SQLite.new(options[:sqlite_location], SaganCrafter::Generators::IPlogger.new )
+    def new_rule_source(source)
+      puts "#[sagan-crafter] #{self.class} - #{source}" if SaganCrafter::Settings.verbose
+      printer = SaganCrafter::Backends::SQLite.new(SaganCrafter::Factory::IPlogger.new )
       printer.validate!
-      printer.print
+      return printer.build
     end
   end
 

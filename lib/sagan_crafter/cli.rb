@@ -16,7 +16,7 @@ module SaganCrafter
         options[:passivedns] = false
 
         options[:sqlite] = false
-        options[:sqlite_location] = '/tmp/threat.db'
+        options[:sqlite_location] = SaganCrafter::Settings.sql_file_location
 
         opt_parser = OptionParser.new do |opt|
           opt.banner = "Usage: sagan-crafter"
@@ -71,15 +71,25 @@ module SaganCrafter
 
         # Boolean switch
         SaganCrafter::Settings.verbose = options[:verbose]
+        SaganCrafter::Settings.sql_file_location = options[:sqlite_location]
 
         if SaganCrafter::Settings.verbose
           puts "++++++++++++++++++++++++++++++++++++++++++++++"
-          puts "+ Sagan-Crafter!"
+          puts "Sagan-Crafter!"
+          SaganCrafter::Settings.print
           puts "++++++++++++++++++++++++++++++++++++++++++++++\n"
         end
 
-        puts  Settings.verbose
-        FQDNRuleset.new('sqlite3')
+        if options[:passivedns]
+          ruleset = FQDNRuleset.new(['sqlite3'])
+        end
+
+        if options[:cxtracker]
+          ruleset = IPRuleset.new(['sqlite3'])
+        end
+         
+        #binding.pry
+        puts ruleset.rules
         #session = SaganCrafter::Gonna.new
         #session.login(username, password)
 

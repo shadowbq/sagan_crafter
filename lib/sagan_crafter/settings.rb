@@ -49,6 +49,7 @@ module SaganCrafter
         normalizer  "tightstack"
         program     "tightstack"
         sql_table_name "fqdns"
+        sql_file_location "/tmp/threat.db"
       end
     end
 
@@ -78,6 +79,7 @@ module SaganCrafter
     parameter :normalizer
     parameter :program
     parameter :sql_table_name
+    parameter :sql_file_location
   end
 
   Settings.reset!
