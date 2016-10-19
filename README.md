@@ -10,10 +10,21 @@ alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - v
 alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - www.cpteducation.it"; content:"www.cpteducation.it"; normalize:tightstack; sid:1499466929; program:tightstack; rev:1;)
 alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - www.itidea.it"; content:"www.itidea.it"; normalize:tightstack; sid:1352812295; program:tightstack; rev:2;)
 ```
+
+Simple Backends:
+
+SQLITE3 - 
+
+```sql
+CREATE TABLE fqdns ( id INTEGER PRIMARY KEY, feed_provider varchar(255), feed_name varchar(255), import_time timestamp default (strftime('%s', 'now')), name varchar(255), CONSTRAINT name_unique UNIQUE (import_time, name) )
+```
+
+* Threatinator - https://github.com/shadowbq/threatinator
+* Threatinator AMQP Client - https://github.com/shadowbq/threatinator-amqp-rcvr
+
 Note: 
 
-* https://github.com/beave/sagan
-* https://quadrantsec.com/sagan_log_analysis_engine/
+* Sagan - https://github.com/beave/sagan
 
 ## Installation
 
