@@ -11,7 +11,7 @@ alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - w
 alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - www.itidea.it"; content:"www.itidea.it"; normalize:tightstack; sid:1352812295; program:tightstack; rev:2;)
 ```
 
-Simple Backends:
+## Simple Backends:
 
 SQLITE3 - 
 
@@ -22,7 +22,7 @@ CREATE TABLE fqdns ( id INTEGER PRIMARY KEY, feed_provider varchar(255), feed_na
 * Threatinator - https://github.com/shadowbq/threatinator
 * Threatinator AMQP Client - https://github.com/shadowbq/threatinator-amqp-rcvr
 
-Note: 
+## Note: 
 
 * Sagan - https://github.com/beave/sagan
 
@@ -36,6 +36,19 @@ Install it as:
 
 ```    
 $ sagan_crafter --help
+Usage: sagan-crafter
+
+    -c, --cxtracker                  Create CXTracker rules
+    -p, --passivedns                 Create Passivedns rules
+
+Backend
+
+    -s, --sqlite=                    Sqlite3 backend file location
+                                       Default: /tmp/threat.db
+Options::
+    -v, --verbose                    Run verbosely
+    -h, --help                       Display this screen
+
 ```
 
 ## Development
