@@ -87,13 +87,9 @@ module SaganCrafter
         if options[:cxtracker]
           ruleset = IPRuleset.new(['sqlite3'])
         end
-         
-        #binding.pry
+        
         puts ruleset.rules
-        #session = SaganCrafter::Gonna.new
-        #session.login(username, password)
 
-        #puts session.search("example.com")
 
       end
 
