@@ -8,6 +8,11 @@ module SaganCrafter
 
     # CREATE TABLE fqdns ( id INTEGER PRIMARY KEY, feed_provider varchar(255), feed_name varchar(255), import_time timestamp default (strftime('%s', 'now')), name varchar(255), CONSTRAINT name_unique UNIQUE (import_time, name) )
 
+    # ATTACH DATABASE '/tmp/oph_threat.db' As 'O';
+
+    # create temp view merge_fqdns as select * from F.fqdns union select * from M.fqdns union select * from O.fqdns;
+    # select DISTINCT count(*) as cnt, max(sub1.import_time) as max_import_time, sub1.name, sub1.feed_name, sub1.feed_provider from (select * from F.fqdns union select * from M.fqdns union select * from O.fqdns) sub1 group by sub1.name;
+
     class SQLite
 
       attr_reader :rule_collection

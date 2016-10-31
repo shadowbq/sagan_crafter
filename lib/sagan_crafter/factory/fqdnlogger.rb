@@ -28,7 +28,7 @@ module SaganCrafter
               'normalize' => SaganCrafter::Settings.normalizer,
               'program' => SaganCrafter::Settings.program,
               'rev' => count,
-              'metadata' => "time #{last_time}"
+              'metadata' => "time #{last_time}, xxhash #{XXhash.xxh64(ioc)}"
               }
             }
         )
