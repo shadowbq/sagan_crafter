@@ -17,16 +17,21 @@ module SaganCrafter
 
       attr_reader :rule_collection
 
-      def initialize(factory)
-        @db = connect(SaganCrafter::Settings.sql_file_location)
+      def initialize(factory, existing_db_connection = nil)
+        if existing_db_connection
+          @db = existing_db_connection
+        else
+          @db = connect(SaganCrafter::Settings.sql_file_location)
+        end
         @factory = factory
         @db.results_as_hash = true
         @rule_collection = []
       end
 
       def size
-        count = db.get_first_value("select count(DISTINCT name) from #{SaganCrafter::Settings.sql_table_name}")
-        puts "#{}count(*): #{count}"
+        count = @db.get_first_value("select count(DISTINCT name) from #{SaganCrafter::Settings.sql_table_name}")
+        puts "count(*): #{count}" if SaganCrafter::Settings.verbose
+        count
       end
 
       def validate!
