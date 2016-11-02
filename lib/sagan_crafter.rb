@@ -3,7 +3,7 @@ require "sagan_crafter/version"
 require 'snort/rule'
 require 'sqlite3'
 require 'xxhash'
-require 'pry'
+#require 'pry'
 
 module SaganCrafter
   $:.unshift(File.dirname(__FILE__))
@@ -15,6 +15,4 @@ module SaganCrafter
   require "sagan_crafter/ruleset"
   require "sagan_crafter/backends/sqlite"
   require "sagan_crafter/factorize"
-  #require "sagan_crafter/factory/fqdnlogger"
-  #require "sagan_crafter/factory/iplogger"
 end
