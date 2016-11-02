@@ -2,13 +2,20 @@
 
 Sagan Crafter is designed to help build SAGAN rules from simple backends.
 
+## Code Status
+
+[![Build Status](https://travis-ci.org/shadowbq/threatinator-amqp-rcvr.svg?branch=master)](https://travis-ci.org/shadowbq/threatinator-amqp-rcvr)
+[![Gem Version](https://badge.fury.io/rb/threatinator-amqp-rcvr.png)](http://badge.fury.io/rb/threatinator-amqp-rcvr)
+[![Tags](https://img.shields.io/github/tag/shadowbq/threatinator-amqp-rcvr.svg)](https://github.com/shadowbq/threatinator-amqp-rcvr/releases)
+
+## Example Sagan Rules created
+
 ```
-alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - tscl.com.bd"; content:"tscl.com.bd"; normalize:tightstack; sid:1635309608; program:tightstack; rev:2;)
-alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - uclmfocus.com"; content:"uclmfocus.com"; normalize:tightstack; sid:1042387290; program:tightstack; rev:2;)
-alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - upstreams.info"; content:"upstreams.info"; normalize:tightstack; sid:1757176352; program:tightstack; rev:1;)
-alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - vibaavaacademy.com"; content:"vibaavaacademy.com"; normalize:tightstack; sid:1270011767; program:tightstack; rev:1;)
-alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - www.cpteducation.it"; content:"www.cpteducation.it"; normalize:tightstack; sid:1499466929; program:tightstack; rev:1;)
-alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - www.itidea.it"; content:"www.itidea.it"; normalize:tightstack; sid:1352812295; program:tightstack; rev:2;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - adobedownloadupdate.com"; content:"adobedownloadupdate.com"; sid:1475620452; normalize:tightstack; program:tightstack; rev:1; metadata:time 1477926621, xxhash 9304759977013689372;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - ahrenhei.without-transfer.ru"; content:"ahrenhei.without-transfer.ru"; sid:1155553526; normalize:tightstack; program:tightstack; rev:1; metadata:time 1477926621, xxhash 7909456445805000225;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - atvracing.ru"; content:"atvracing.ru"; sid:1115626887; normalize:tightstack; program:tightstack; rev:1; metadata:time 1477926621, xxhash 7986141927809670135;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - benchmarkemailsite.com"; content:"benchmarkemailsite.com"; sid:1035073116; normalize:tightstack; program:tightstack; rev:1; metadata:time 1477926621, xxhash 4156062036502574446;)
+alert tcp $HOME_NET any <> any any (msg:"[PASSIVEDNS] vxvault url_reputation - benveaskim.com"; content:"benveaskim.com"; sid:1218006184; normalize:tightstack; program:tightstack; rev:1; metadata:time 1477926621, xxhash 801405033058849559;)
 ```
 
 ## Simple Backends:
@@ -50,6 +57,17 @@ Options::
     -h, --help                       Display this screen
 
 ```
+## XXHash
+
+XXhash is used to create a reference number from the content matcher. The 64 bit hash is attached as a reference if there is a collision in the sid generation. SID numbers use a weak algorithm that can easily lead to collisions. xxhash used to strictly identify the content of the SAGAN rules.
+
+SIDs are calculated using: 
+
+```ruby
+XXhash.xxh32(ioc) % 1000000000 + 1000000000,
+```
+
+Reference: https://github.com/Cyan4973/xxHash
 
 ## Development
 
